@@ -18,6 +18,7 @@ package com.example.android.SimpleCalc;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -46,8 +47,6 @@ public class MainActivity extends Activity {
     private EditText mOperandTwoEditText;
 
     private TextView mResultTextView;
-    private double operandOne;
-    private double operandTwo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,9 +94,16 @@ public class MainActivity extends Activity {
     }
 
     private void compute(Calculator.Operator operator) {
+        if(TextUtils.isEmpty(mOperandOneEditText.getText().toString())){
+            mOperandOneEditText.setError("Input a number");
+            return;
+        } else if (TextUtils.isEmpty(mOperandTwoEditText.getText().toString())){
+            mOperandTwoEditText.setError("Input a number");
+            return;
+        }
 
-//        double operandOne;
-//        double operandTwo;
+        double operandOne;
+        double operandTwo;
         try {
             operandOne = getOperand(mOperandOneEditText);
             operandTwo = getOperand(mOperandTwoEditText);
