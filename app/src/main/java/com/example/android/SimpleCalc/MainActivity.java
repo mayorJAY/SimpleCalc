@@ -21,12 +21,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 /**
  * SimpleCalc is the initial version of SimpleCalcTest.  It has
@@ -93,6 +89,13 @@ public class MainActivity extends Activity {
         compute(Calculator.Operator.MUL);
     }
 
+    /**
+     * OnClick method called when the power Button is pressed.
+     */
+    public void onPow(View view) {
+        compute(Calculator.Operator.POW);
+    }
+
     private void compute(Calculator.Operator operator) {
         if(TextUtils.isEmpty(mOperandOneEditText.getText().toString())){
             mOperandOneEditText.setError("Input a number");
@@ -125,11 +128,15 @@ public class MainActivity extends Activity {
                 break;
             case DIV:
                 result = String.valueOf(
-                        mCalculator.div(operandOne, operandTwo));
+                            mCalculator.div(operandOne, operandTwo));
                 break;
             case MUL:
                 result = String.valueOf(
                         mCalculator.mul(operandOne, operandTwo));
+                break;
+            case POW:
+                result = String.valueOf(
+                        mCalculator.mPow(operandOne, operandTwo));
                 break;
             default:
                 result = getString(R.string.computationError);

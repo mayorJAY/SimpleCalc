@@ -25,6 +25,7 @@ import org.junit.runners.JUnit4;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.number.IsCloseTo.closeTo;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -53,6 +54,73 @@ public class CalculatorTest {
         assertThat(resultAdd, is(equalTo(2d)));
     }
 
+    /**
+     * Test for addition with a -ve number
+     */
+    @Test
+    public void addTwoNumbersNegative(){
+        double resultAdd = mCalculator.add(-1d, 2d);
+        assertThat(resultAdd, is(equalTo(1d)));
+    }
 
+    @Test
+    public void addTwoNumbersFloat(){
+        double resultAdd = mCalculator.add(1.111f, 1.111d);
+        assertThat(resultAdd, is(closeTo(2.222, 0.01)));
+    }
+
+    /**
+     * Test for simple subtraction
+     */
+    @Test
+    public void subTwoNumbers(){
+        double resultSub = mCalculator.sub(5d, 2d);
+        assertThat(resultSub, is(equalTo(3d)));
+    }
+
+    /**
+     * Test for subtraction with -ve result
+     */
+    @Test
+    public void subWorksWithNegativeResult(){
+        double resultSub = mCalculator.sub(4d, 14d);
+        assertThat(resultSub, is(equalTo(-10d)));
+    }
+
+    /**
+     * Test for simple multiplication
+     */
+    @Test
+    public void mulTwoNumbers(){
+        double resultMul = mCalculator.mul(6d, 2d);
+        assertThat(resultMul, is(equalTo(12d)));
+    }
+
+    /**
+     * Test for multiplication with zero
+     */
+    @Test
+    public void mulTwoNumbersZero(){
+        double resultMul = mCalculator.mul(0d, 4d);
+        assertThat(resultMul, is(equalTo(0d)));
+    }
+
+    /**
+     * Test for simple division
+     */
+    @Test
+    public void divTwoNumbers(){
+        double resultDiv = mCalculator.div(10d, 2d);
+        assertThat(resultDiv, is(equalTo(5d)));
+    }
+
+    /**
+     * Test for simple power operation
+     */
+    @Test
+    public void powTwoNumbers(){
+        double resultDiv = mCalculator.mPow(5d, 2d);
+        assertThat(resultDiv, is(equalTo(25d)));
+    }
 
 }
